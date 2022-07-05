@@ -1,3 +1,27 @@
 {
-  "port" : 9000
+  "port": 9000,
+  "log_config": {
+    "dev": {
+      "appenders": {
+        "out": {
+          "type": "stdout"
+        },
+        "app": {
+          "type": "file",
+          "filename": "application.log"
+        }
+      },
+      "categories": {
+        "default": {
+          "appenders": [
+            "out",
+            "app"
+          ],
+          "level": "debug"
+        }
+      }
+    },
+    "prod": {
+    }
+  }
 }
