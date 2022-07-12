@@ -74,6 +74,105 @@ test1() // 输出 0,1,2,3,4,5
 
 和 let 相同， 唯一的限制就是const 必须有初始值并且不能进行变更 ，  但是注意我们可以const定义一个对象， 然后修改这个对象自己内部的属性的 ， 这个是符合预期的
 
-> 注意const同样也可以在for 循环和迭代器中使用
+### 变量数据类型
+
+js 6 种数据类型 ， underfined， Null ， boolean number string Symbol（符号类型）Object 类型
+
+- typeof 操作符
+
+使用 typeof 操作符号可以货渠道类型的真是类型 ， 返回之一般为如下
+
+- underfind
+- boolean
+- string
+- number
+- object
+- function
+- symbol
+```javascript
+let i = "message"
+console.log(typeof i) // 输出 string
+```
+
+> 注意一个点 ： underfind 指代变量没有初始化， null 指代对象没有初始化
+
+#### boolean 类型这里其实要注意一个特殊的操作
+
+```javascript
+// 以下情况 ， 使用 boolean方法强制转化 - 返回false
+console.log(Boolean(""))
+console.log(Boolean(false))
+console.log(Boolean(0),Boolean(NaN))
+console.log(Boolean(null))
+console.log(Boolean(undefined))
+```
+
+#### Number类型
+
+几个边界变量 
+
+```javascript
+Infinity // + 无穷大
+-Infinity // - 无穷大
+NaN // 非数字
+```
+
+几个常用的方法
+
+```javascript
+// 返回false的场景， 表示可以转化成数字的场景 ， true 的情况需要特殊关注
+isNaN(10)
+isNaN("10")
+isNaN(true)
+```
+
+数字转化常用方法
+
+```javascript
+Number() -> 参考NaN方法
+parseInt() -> 转整形
+parseFloat() -> 转浮点型
+```
+
+#### string 类型
+
+注意方法 toString =》可以将变量变成字符串类型
+
+模板字符串支持  =》 保留原来的格式 ， 使用``符号支持
+
+```javascript
+`
+dsfasdgasdf asdfadgd
+`
+```
+
+字符串插值支持 
+
+```javascript
+let zz = "fffff"
+let item = `sdfadgdsf ${zz} asfdgsdf`
+```
+
+#### object 类型
+
+声明对象
+
+```javascript
+let o = new Object()
+```
+
+对象内置方法
+
+```javascript
+let o = new Object()
+o.constructor // 构造函数
+o.hasOwnProperty("name") // 自己的名称
+o.isPrototypeOf(o) // 判断当前对象是不是一个对象的原型
+o.propertyIsEnumerable() // 判断当前的变量是否可以被for-in 枚举
+o.toLocaleString() // 
+o.toString()
+o.valueOf() // 和toString() 相同
+```
+
 
 

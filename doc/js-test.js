@@ -1,6 +1,6 @@
 function test1(){
 
-    for (let i=0;i<5;i++){
+    for (const i=0;i<5;++i){
         funcI(i)
     }
 
@@ -11,4 +11,5 @@ function test1(){
     }
 }
 
-test1()
+let name ="ffff"
+console.log(`asgadsfasdf ${name} fsdfasfd`)
