@@ -129,9 +129,9 @@ isNaN(true)
 数字转化常用方法
 
 ```javascript
-Number() -> 参考NaN方法
-parseInt() -> 转整形
-parseFloat() -> 转浮点型
+Number(); //-> 参考NaN方法
+parseInt(); //-> 转整形
+parseFloat();//-> 转浮点型
 ```
 
 #### string 类型
@@ -142,7 +142,7 @@ parseFloat() -> 转浮点型
 
 ```javascript
 `
-dsfasdgasdf asdfadgd
+dsfasdgasdf asdfadgd`
 `
 ```
 
@@ -175,4 +175,34 @@ o.valueOf() // 和toString() 相同
 ```
 
 
+#### function 类型
+
+function 是 javascript中一个比较特殊的类型 
+1. function 可以做为变量
+2. function 返回值可以不声明 ， 以实际返回的结果为结论（也就说function 返回的类型是未知的t）
+
+## 4. 原始值& 引用值 & 作用域 & 内存
+
+javascript 中的原始值有 underfind ， null ， bool ， string ， number ， 符号 
+javascript 其他的场景都是引用值
+
+new 操作 -> 创造一个对象 
+
+> 引申 javascript 和java 在一定程度上很像 ，比如 int 类型和Interger类型 ， 实际上运行的结构类似， 但是一个是int 类型一个是object
+
+new 创建的object 类型可以附加属性
+
+```javascript
+let objectItem = new Onject("");
+objectItem.name = "test name" // 支持增加新的属性
+```
+
+### typeof 和 instanceof -> 判断类型
+
+typeof 可以用来判断变量的低类型
+instanceof 可以用来判断对象的类型
+
+```javascript
+console.log(persion instanceof Array) //  判断persion这个变量是不是Array这个类型
+```
 
