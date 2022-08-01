@@ -8,6 +8,8 @@
 > 外部引用 script 脚本的时候可以使用 SPDY/HTTP2 批量获取一批文件， 关键是浏览器是否支持
 
 2. 动态添加脚本 - 默认异步加载
+
+
 ```javascript
 let script = document.createElement('script');
 script.src = 'xxx.js'
