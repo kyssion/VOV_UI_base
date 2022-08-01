@@ -145,7 +145,6 @@ parseFloat();//-> 转浮点型
 ```javascript
 `
 dsfasdgasdf asdfadgd`
-`
 ```
 
 字符串插值支持 
