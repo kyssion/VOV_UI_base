@@ -1,15 +1,12 @@
-function test1(){
-
-    for (const i=0;i<5;++i){
-        funcI(i)
-    }
-
-    function funcI(i){
-        setTimeout(()=>{
-            console.log(i)
-        })
-    }
+let aaa= "123"
+function tesf(){
+    console.log(aaa)
 }
 
-let name ="ffff"
-console.log(`asgadsfasdf ${name} fsdfasfd`)
+
+function test2(){
+    let aaa = 2
+    tesf()
+}
+
+test2()
