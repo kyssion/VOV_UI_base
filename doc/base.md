@@ -196,7 +196,7 @@ new 创建的object 类型可以附加属性
 ```javascript
 let objectItem = new Onject("");
 objectItem.name = "test name" // 支持增加新的属性
-```function test1(){
+function test1(){
 
     for (const i=0;i<5;++i){
         funcI(i)
@@ -211,8 +211,8 @@ objectItem.name = "test name" // 支持增加新的属性
 
 let name ="ffff"
 console.log(`asgadsfasdf ${name} fsdfasfd`)
-
-### typeof 和 instanceof -> 判断类型
+```
+### typeof 和javascript instanceof -> 判断类型
 
 typeof 可以用来判断变量的低类型
 instanceof 可以用来判断对象的类型
@@ -221,5 +221,56 @@ instanceof 可以用来判断对象的类型
 console.log(persion instanceof Array) //  判断persion这个变量是不是Array这个类型
 ```
 
+> 作用域链javascript = > var变量是运行时刻指定 ， let 是定义时
 
-> 作用域链 = > var变量是运行时刻指定 ， let 是定义时
+# js 常用对象
+
+## Date
+
+1. 创建方法和初始化方法
+```javascript
+var dateItem = new Date()
+dateItem = Date.parse("2022-07-22T12:22:22") // 传入字符串转化成毫秒数 
+dateItem = Date.UTC(2022,7,22,22,22,22,33) // 字符串化时间
+```
+
+2. 时间信息打印
+
+```javascript
+var dateItem = new Date()
+dateItem.toString() // 打印有时区的时间信息
+dateItem.toLocaleDateString() // 打印当前时间的
+dateItem.toDateString()
+dateItem.toTimeString()
+
+// DateString 有周信息
+```
+
+3. 操作符号
+
+> date 对象是可以直接进行比较的
+
+```javascript
+var date1 = new Date(Date.UTC(2022,7,7))
+var date2 = new Date(Date.UTC(2022,7,8))
+console.log(date1>date2)
+```
+
+## 正则表达式对象
+
+## 内置对象 string number bool 分别对应相关的操作函数
+
+## globe window math 
+
+> 注意关键对象eval 函数
+
+
+# js 内建数据结构
+
+定型数组
+
+Array
+
+Map
+
+Set
