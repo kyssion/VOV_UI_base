@@ -267,9 +267,156 @@ console.log(date1>date2)
 
 # js 内建数据结构
 
-定型数组
+## object 类型
 
-Array
+```javascript
+// 声明对象
+var obj = {}
+var obj = new Object()
+
+// 增加属性
+
+obj.name = "name"
+obj["name"] = "name" // 动态增加属性
+```
+
+## Array类型
+
+```javascript
+// 创建array 类型
+let arr = new Array()
+let arr = new Array(20)// 指定容量
+// 创建array的时候可以省略 new
+
+let arr = Array(20)
+// 直接标记符号初始化
+let arr = []
+// ES6 支持 from 和 of
+
+// from 支持所有可以迭代的变量创建
+const m = new Map().set(1,2).set(2,3)
+let arr = Array.from(m)// [[1,2],[2,3]]
+
+// 任意可迭代对象
+const iter = {
+    *[Symbol.iterator](){
+        yield 1;
+        yield 2;
+    }
+}
+
+Array.from(iter)
+// from 关键字还支持传参数 第二个函数用于处理迭代的值， 第三个参数可以使用this获取到
+let arr = Array.from(m,(x)=>x[0]**this.exp,{exp:2})
+
+// of 用于将一组对象转化成数组, 一般用于多个数组拼接， 配合展开语法使用
+Array.of(1,2,3,4,...[1,2,3,4])
+```
+
+> js判断是否是数组的方法
+
+```javascript
+Array.isArray() // instanceof 也可以支持 ， 但是这种方法其实并不好用
+```
+
+> ES6 array 迭代器语法和解构方法
+
+```javascript
+let arr = []
+arr.keys() // 返回k
+arr.values() // 返回v
+arr.entries() // 返回 kv
+for (const [idx , element] of arr.entries()){ // es6 of 解构
+    
+}
+```
+
+> es6 批量复制和填充语法
+
+```javascript
+//  array.fill(填充数值 ， 开始下标， 结束下标)- 后两个参数不写填充所有
+// array.copywithin（填充开始位置，标记开始位置，结束开始位置）
+```
+
+> 数组信息打印
+
+```javascript
+arr.toString()
+arr.toLocaleString()
+arr.join("|") // 返回数组中每一个值的toString ， 并用传入的符号分割
+```
+
+> 数组栈方法
+
+```javascript
+colors.push() // 向数组后面添加值
+colors.unshift() // 向数组前面添加值
+colors.pop() // 移除返回最后一项
+colors.shift() // 移除返回第一项
+```
+
+> sort方法 reverse()
+
+- 注意都是返回数组原来的引用
+
+```javascript
+
+let value = [1,2,3,4,5]
+value.sort((a, b)=>{a<b?1:a>b?-1:0}) // 重新排序
+value.reverse() // 数组反转
+
+```
+
+## 数组其他操作方法
+
+1. 数组打平concat
+
+```javascript
+
+let colors = [1,2,4]
+let colors2 = [5,6,7]
+let color3 = colors2.concat(4,4,colors) // 5,6,7,4,4,1,2,4
+```
+
+打平参数的行为可以重写， 可以在参数数组上指定一个特殊的符号阻止参数打平Symbol.isConcatSpreadable
+
+```javascript
+let moreNewColors = {
+    [Symbol.isConcatSpreadable]:false,
+    length:2,
+    0: 1,
+    1: 1
+}
+
+let arr = [1,2,3,4]
+arr[Symbol.isConcatSpreadable] = false;
+```
+
+2. 数组切片 slice 类似golang todo
+
+3. splice 插入元素
+
+三个参数 开始位置， 删除元素的数量， 插入元素的数量
+
+4. 搜索 ， indexOF lastIndexof includes 前两个返回位置 ， 后一个返回是否存在
+5. 断言搜索
+
+```javascript
+let item = [
+    {
+        name:"kyssion",
+        age: 29
+    },
+    {
+        name:"kyssion2",
+        age: 10
+    }
+]
+
+item.find((element,index, arr)=>{element.age<28}) // true 返回对象
+item.findIndex((element,index, arr)=>{element.age<28}) // true 返回下标
+
+```
 
 Map
 
