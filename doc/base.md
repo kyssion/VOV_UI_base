@@ -196,7 +196,7 @@ new 创建的object 类型可以附加属性
 ```javascript
 let objectItem = new Onject("");
 objectItem.name = "test name" // 支持增加新的属性
-```function test1(){
+function test1(){
 
     for (const i=0;i<5;++i){
         funcI(i)
@@ -211,6 +211,7 @@ objectItem.name = "test name" // 支持增加新的属性
 
 let name ="ffff"
 console.log(`asgadsfasdf ${name} fsdfasfd`)
+```
 
 ### typeof 和 instanceof -> 判断类型
 
@@ -223,3 +224,12 @@ console.log(persion instanceof Array) //  判断persion这个变量是不是Arra
 
 
 > 作用域链 = > var变量是运行时刻指定 ， let 是定义时
+
+#### javascript 基本类型
+
+1. Date 时间控制类型
+
+```javascript
+let date = new Date()
+```
+
