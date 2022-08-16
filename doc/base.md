@@ -415,6 +415,22 @@ let item = [
 
 item.find((element,index, arr)=>{element.age<28}) // true 返回对象
 item.findIndex((element,index, arr)=>{element.age<28}) // true 返回下标
+```
+
+6. 迭代器
+
+> 所有的方法都有两个参数 ， 第一个参数是一个回调函数-传入3个参数，当前的值，index，和数组本身，第二个参数是回调函数可以使用的this对象， 用于回调函数使用
+> 这些方法都不改变原来的数组
+```javascript
+let arr = []
+arr.every((item,index,arr)=>{return true},{name:"fdsfd"})//每一个都是true这个返回true
+arr.filter((item,index,arr)=>{return true},{name:"fdsfd"}) // 返回true的项会组成数组返回
+arr.forEach((item,index,arr)=>{return true},{name:"fdsfd"})// 对数组中每一项都运行传入的函数
+arr.map((item,index,arr)=>{return true},{name:"fdsfd"}) // 遍历数组调用回调函数 ， 对返回值组成数组返回
+arr.some((item,index,arr)=>{return true},{name:"fdsfd"}) //  如果有一项返回true这个就返回true
+
+arr.reduce((prev,cur,index,arr)=>{return 1},123)// 归并 -> prev 前一个值， cur当前值 ， 函数第二个参数是初始值
+arr.reduceRight((prev,cur,index,arr)=>{return 1},123)
 
 ```
 
