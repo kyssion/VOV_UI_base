@@ -418,6 +418,38 @@ item.findIndex((element,index, arr)=>{element.age<28}) // true 返回下标
 
 ```
 
-Map
+## Map 类型
+
+```javascript
+// 创建Map
+// 1. 基本创建
+let m = new Map()
+// 2. 初始化创建
+let m = new Map([
+    ["key1","value1"]
+])
+// 3. 使用迭代器初始化映射
+let m = new Map({
+    [Symbol.iterator]:function *(){
+        yield ["key1","vaue1"];
+    }
+})
+
+m.get("key")
+m.set("key","value")
+m.has("key")
+m.delete("key")
+m.clear()// 清空
+```
+
+2. map 迭代 
+
+map 的迭代器和arr相同
+
+```javascript
+let map =new Map()
+alert(map.entries== map[Symbol.iterator]) // true
+// 注意这个地方， map.entries 和 map的Symbol.iterator 一致
+```
 
 Set

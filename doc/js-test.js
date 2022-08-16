@@ -1,12 +1,8 @@
-let aaa= "123"
-function tesf(){
-    console.log(aaa)
+let mapS = new Map()
+mapS.set("a","a")
+console.log(mapS.entries === mapS[Symbol.iterator])
+
+
+for (let item of mapS[Symbol.iterator]()){
+    console.log(item)
 }
-
-
-function test2(){
-    let aaa = 2
-    tesf()
-}
-
-test2()
