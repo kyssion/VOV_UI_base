@@ -458,7 +458,7 @@ m.delete("key")
 m.clear()// 清空
 ```
 
-2. map 迭代 
+2. map 和 set
 
 map 的迭代器和arr相同
 
@@ -468,4 +468,148 @@ alert(map.entries== map[Symbol.iterator]) // true
 // 注意这个地方， map.entries 和 map的Symbol.iterator 一致
 ```
 
-Set
+> map 和object 的取舍问题
+> map省内存 ， map 插入性能更好，查找性能类似，删除性能优秀
+
+# js 迭代器和生成器
+
+### 迭代器
+
+js支持迭代器的场景是当前的数据结构支持了迭代器, 实现迭代器必须的方法就可以
+
+```javascript
+class Test {
+    [Symbol.iterator](){
+        return{
+            next :function (){
+                return{done:false,value:"f"}
+            }
+        }
+    }
+}
+```
+
+> 对象只要实现了next 方法， 就可以被迭代器支持
+
+迭代器可以使用next方法获取下一个值
+
+```javascript
+let arr = [1,2,3,4]
+let iter = arr.entries()
+iter.next()
+```
+
+迭代器提前关闭 - 方法实现reture() 方法
+
+如果一个对象实现了retrue()方法 ， 那么这个迭代器对象就会在 for-of bread ， continue，reture 或者throw自动推出
+或者没有消费完所有值的时候
+
+### 生成器
+
+生成器定义
+
+```javascript
+function * generation(){}
+let g = function * (){}
+let foo = {
+    * g(){}
+}
+
+class Foo{
+    * generationFn(){}
+}
+class Foo{
+    static * generationFn(){}
+}
+```
+
+生成器可以成为一个迭代器使用 next 和 for of 进行迭代
+
+```javascript
+function * generatorFn(){
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+let iter = generatorFn()
+iter.next()
+
+for (let i of generation()){
+    
+}
+//返回值和迭代器一样 ， 返回一个对象{done:true,value:"item"}
+```
+
+生成器next设数值
+
+```javascript
+function * test(){
+    let a = yield 1;
+    console.log(a)
+    yield 2;
+}
+
+let z = test()
+console.log(z.next(12))
+console.log(z.next(4))
+
+```
+输出 ：
+
+```javascript
+{ value: 1, done: false }
+4
+{ value: 2, done: false }
+```
+
+> 运行的方法是 next的时候会引导函数运行到下一个yield ， next传入的值会在下一个使用
+
+- yield * 增强优化
+- yield * 会展开后面的可迭代（生成器逻辑）继续向下运行，上层调用的时候会解析后面数据返回的value值返回给上层
+
+```javascript
+function * test(n){
+   if (n>0){
+       yield* test(n-1)
+       yield n-1
+   }
+}
+
+for (const i of test(3)){
+    console.log(i)
+}
+```
+
+联合场景 ， 生成器变成迭代器
+
+```javascript
+class Foo{
+    constructor(){
+        
+    }
+    * [Symbol.iterator](){
+        yield * this.values;
+    }
+}
+```
+
+- 特殊用法， throw终止部分迭代
+
+```javascript
+function * generatorFn(){
+    for (const x of [1,2,3]){
+        try{
+            yield x;
+        } catch (e){
+            console.log(e)
+        }
+    }
+}
+
+const g = generatorFn()
+console.log(g.next())
+g.throw("foo")
+g.return()// 直接终止
+console.log(g.next())
+```
