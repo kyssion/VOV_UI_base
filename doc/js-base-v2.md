@@ -61,4 +61,103 @@ Object.getOwnPropertyDescriptors()// 返回每一个数据行的配置信息
 ```javascript
 Object.assign({},{}) //  后一个合并到前一个中
 ```
-5. 
+5. es6 对象声明简写方法
+
+- 属性名称复写
+
+```javascript
+let name = "name"
+let p = {
+    name:name
+}
+
+// 等价于
+
+let p={
+    name
+}
+
+// 函数嵌套保留
+
+function setName(name){
+    return {
+        name
+    }
+}
+let p = setName("name")
+console.log(p.name)// 输出name ， 这个name 是保留的
+```
+
+- 字符串（动态）属性直接赋值
+
+```javascript
+let name = 'name'
+let p ={}
+p[name] = name
+
+// 可以写成
+let p={
+    [name]:"name"
+}
+
+// 还支持函数写入
+
+function createName(name){
+    return "this_"+name
+}
+
+let p = {
+    [createName("tttt")]:"name"
+}
+```
+
+- 快速函数命名
+```javascript
+let name = "thisName"
+let p = {
+    name_ :"ffff",
+    sayName(name){
+        return this.name_
+    },
+    get name(){ // 获取属性
+        return this.name_ 
+    },
+    set name(name){ // 设置属性
+        this.name_ = name
+    },
+    [name](){ // 自定义方法名称
+        
+    }
+}
+```
+
+- 对象解构
+
+```javascript
+let p ={
+    name:"fsdfs",
+    age :16,
+    fuc :{
+        ppp:"123",
+        zzz:{
+            qqq:"ffff"
+        }
+    }
+}
+
+let {name:ppp,age:zzz,fuc:{ppp:qqq},fuc:{zzz:{qqq:yyy}}}=p
+let {name,age} = p // 简写方法
+
+function item(p,{name,age},z){ //还支持函数
+    console.log(name, age)
+}
+function item2(p,{name:ffff,age:tttt},z){ // 还支持函数
+    console.log(ffff, tttt)
+}
+let i = {
+    name:"fff",
+    age : 123
+}
+item2(123,i,123)
+
+```
