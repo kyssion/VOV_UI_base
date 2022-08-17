@@ -159,5 +159,114 @@ let i = {
     age : 123
 }
 item2(123,i,123)
+```
+
+- 原型链 继承 - 忽略
+
+- class 类
+
+1. 类声明
+
+```javascript
+// 两种方法
+class Person{}
+const Item = class{}
+```
+
+> 类一般都是初始化时候定义的 ， 不想函数可以在任意的位置定义，所以类需要在一开始就定义好
+
+2. 类构成
+
+```javascript
+class Foo{
+    name_ // 原型链中增加变量
+    age
+    constructor(){
+        this.age = 12
+        this.arr = [1,2,3,4]
+    }
+    get name(){
+        return this.name_
+    }
+    set name(name){
+        this.name_ = name
+    }
+    zzz(){ // 相当于定义在原型链中
+        
+    }
+    
+    *[Symbol.iterator](){ // 对象直接支持迭代
+        yield *this.arr.entries
+    }
+    [Symbol.iterator](){ // 对象直接支持返回迭代器
+        return this.arr.entries()
+    }
+    
+}
+    
+    static myQux(){ // 静态类可以直接使用类名调用
+}
+```
+
+特殊地方， 获取表达式名称
+
+```javascript
+let Person = class Item{
+    identify(){
+        console.log(Person.name,Item.name) // 可以打印出类的内部名称
+    }
+}
+let p = new Person()
+p.identify()
+console.log(Person.name) // 外部只能获取表层类的信息
 
 ```
+
+js 类其实是一个特殊函数对象是绑定构造函数
+
+```javascript
+class Person{
+    name
+    construction(use){
+        if(use===true){
+            return {
+                name:"p2"
+            }
+        }
+        this.name = "p1"
+    }
+}
+
+let p1 = new Person()
+let p2 = new Person(true)
+console.log(p1)
+console.log(p2)
+console.log(p1 instanceof Person)
+console.log(p2 instanceof Person)
+// 输出：Person { name: 'p1' }
+// { name: 'p2' }
+// true
+// false
+
+// -- 这种方法也可以创建
+let p3 = p1.construction()
+console.log(p3)
+console.log(p3 instanceof Person)
+
+console.log(typeof Person)// 类是一种特殊的函数
+
+// class 底层也是函数 ， 所以原型链这套class 也可以用
+console.log(Person == Person.prototype.constructor) // true
+
+// -- 立即调用
+
+let p = new class Foo{
+    constructor(x){
+        console.log(x)
+    }
+}('ccc')
+
+```
+
+
+-- 继承？ 使用组合 忽略
