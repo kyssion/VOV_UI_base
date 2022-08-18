@@ -247,7 +247,6 @@ console.log(p2 instanceof Person)
 // { name: 'p2' }
 // true
 // false
-
 // -- 这种方法也可以创建
 let p3 = p1.construction()
 console.log(p3)
@@ -268,5 +267,27 @@ let p = new class Foo{
 
 ```
 
-
 -- 继承？ 使用组合 忽略
+
+# js 函数
+
+js 的函数现在和一些基本语言的函数没啥区别 ， 主要要注意的地方那个
+
+0. 箭头函数
+
+1. 函数内部的特殊对象
+
+```javascript
+
+// 1. arguments - 一个数组 ， 传入函数的所有属性
+function factorial(num){ // 递归相加
+    if (arguments[0]<=1){ // 取值
+        return 1
+    }else{
+        return arguments[0]+arguments.callee(arguments[0]-1)  // 取函数
+    }
+}
+```
+
+> js支持这个的原因是因为js支持函数重命名 ， 重命名的函数递归会有问题， 所以一般内部使用这个方法
+
