@@ -1,10 +1,23 @@
-
-function item(p,{name,age},z){
-    console.log(name, age)
+function test1(){
+    console.log(this.color)
 }
 
-let i = {
-    name:"fff",
-    age : 123
+let test2 = ()=>{
+    console.log(this.color)
 }
-item(123,i,123)
+
+function test3(){
+    console.log(this.color)
+}
+
+color = 'blue'
+
+let o= {
+    color :'red'
+}
+
+test1()
+test2()
+
+o.test2 = test3
+o.test2()
